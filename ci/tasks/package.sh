@@ -2,6 +2,7 @@
 
 set -e +x
 
+echo "Starting packaging..."
 pushd attendee-service-source
   echo "Packaging JAR"
   ./mvnw clean package -DskipTests

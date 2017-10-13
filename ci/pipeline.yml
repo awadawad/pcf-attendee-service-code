@@ -47,7 +47,7 @@ jobs:
   - task: prepare-app-manifest
     file: attendee-service-source/ci/tasks/app-manifest-prep.yml
     params:
-      PWS_APP_SUFFIX: {{cf-app-prefix}}
+      CF_APP_PREFIX: {{cf-app-prefix}}
 
   - task: package
     file: attendee-service-source/ci/tasks/package.yml

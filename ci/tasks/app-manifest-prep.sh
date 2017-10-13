@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 set -xe
 
 cat ./current-app-info/current-app.txt

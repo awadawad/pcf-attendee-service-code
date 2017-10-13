@@ -4,7 +4,7 @@ resources:
   type: git
   source:
     uri: https://github.com/awadawad/pcf-attendee-service-code  #<---- REPLACE ME
-    branch: master
+    branch: blue-gree-deployment
 
 - name: deploy-attendee-service
   type: cf

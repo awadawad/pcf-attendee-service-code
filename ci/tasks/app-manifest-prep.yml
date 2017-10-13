@@ -15,4 +15,4 @@ outputs:
 - name: app-manifest-output
 
 run:
-  path: attendee-service-source/ci/tasks/app-manifest-prep
+  path: attendee-service-source/ci/tasks/app-manifest-prep.sh

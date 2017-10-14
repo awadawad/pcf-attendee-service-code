@@ -109,3 +109,18 @@ jobs:
       CF_USER: {{cf-user}}
       CF_PWD: {{cf-password}}
       CF_SPACE: {{cf-space}}
+
+- name: smoke-test-promoted-version
+  serial: true
+  public: true
+  plan:
+
+  - get: attendee-service-source
+    trigger: true
+    passed: [promote-new-version]
+
+  - task: smoke_test
+    file: attendee-service-source/ci/tasks/smoke-test-promoted-version.yml
+    params:
+      CF_APP_PREFIX: {{cf-app-prefix}}
+      CF_APP_DOMAIN: {{cf-app-domain}}

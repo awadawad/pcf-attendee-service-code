@@ -2,10 +2,8 @@
 
 set -ex
 
-if [ -z $ATTENDEE_SERVICE_URL ]; then
-  echo "ATTENDEE_SERVICE_URL not set"
-  exit 1
-fi
+export NEXT_APP_COLOR=$(cat ./current-app-info/next-app.txt)
+export ATTENDEE_SERVICE_URL=http://$CF_APP_PREFIX-$NEXT_APP_COLOR.$CF_APP_DOMAIN/
 
 echo "Installing CURL"
 apt-get update && apt-get install -y curl

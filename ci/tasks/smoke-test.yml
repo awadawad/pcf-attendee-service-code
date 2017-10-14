@@ -6,11 +6,9 @@ image_resource:
     repository: ubuntu
     tag: "latest"
 
-params:
-  ATTENDEE_SERVICE_URL:
-
 inputs:
 - name: attendee-service-source
+- name: current-app-info
 
 run:
   path: attendee-service-source/ci/tasks/smoke-test.sh

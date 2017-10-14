@@ -57,13 +57,25 @@ jobs:
       manifest: app-manifest-output/manifest.yml
       path: package-output/attendee-service.jar
 
-#- name: smoke-test-new-version
-#  public: true
-#  plan:
-#  - get: attendee-service-source
-#    trigger: true
-#    passed: [deploy]
-#  - task: smoke_test
-#    file: attendee-service-source/ci/tasks/smoke-test.yml
-#    params:
-#      ATTENDEE_SERVICE_URL: http://attendee-service-behenic-fosterling.apps.cumuluslabs.io  #<---- REPLACE ME
+- name: smoke-test-new-version
+  public: true
+  plan:
+  - get: attendee-service-source
+    trigger: true
+    passed: [deploy-new-version]
+
+  - task: get-current-app-color
+    file: attendee-service-source/ci/tasks/current-app-get-info.yml
+    params:
+      CF_APP_PREFIX: {{cf-app-prefix}}
+      CF_API: {{cf-api}}
+      CF_ORG: {{cf-organization}}
+      CF_USER: {{cf-user}}
+      CF_PWD: {{cf-password}}
+      CF_SPACE: {{cf-space}}
+
+  - task: smoke_test
+    file: attendee-service-source/ci/tasks/smoke-test.yml
+    params:
+      CF_APP_PREFIX: {{cf-app-prefix}}
+      CF_APP_DOMAIN: {{cf-app-domain}}

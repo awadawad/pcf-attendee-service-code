@@ -79,3 +79,33 @@ jobs:
     params:
       CF_APP_PREFIX: {{cf-app-prefix}}
       CF_APP_DOMAIN: {{cf-app-domain}}
+
+- name: promote-new-version
+  serial: true
+  public: true
+  plan:
+
+  - get: attendee-service-source
+    trigger: true
+    passed: [smoke-test-new-version]
+
+  - task: get-current-app-color
+    file: attendee-service-source/ci/tasks/current-app-get-info.yml
+    params:
+      CF_APP_PREFIX: {{cf-app-prefix}}
+      CF_API: {{cf-api}}
+      CF_ORG: {{cf-organization}}
+      CF_USER: {{cf-user}}
+      CF_PWD: {{cf-password}}
+      CF_SPACE: {{cf-space}}
+
+  - task: switch-app-routes
+    file: attendee-service-source/ci/tasks/update-routes.yml
+    params:
+      CF_APP_PREFIX: {{cf-app-prefix}}
+      CF_APP_DOMAIN: {{cf-app-domain}}
+      CF_API: {{cf-api}}
+      CF_ORG: {{cf-organization}}
+      CF_USER: {{cf-user}}
+      CF_PWD: {{cf-password}}
+      CF_SPACE: {{cf-space}}

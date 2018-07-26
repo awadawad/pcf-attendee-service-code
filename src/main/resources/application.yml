@@ -14,12 +14,12 @@ spring:
 spring:
   profiles: local
   datasource:
-    url: jdbc:mysql://localhost/test
-    username: root
-    password:
-    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:postgresql://localhost:5432/attendee
+    username: vti
+    password: vti
+    driverClassName: org.postgresql.Driver
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5Dialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
 

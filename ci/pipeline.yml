@@ -3,16 +3,16 @@ resources:
 - name: attendee-service-source
   type: git
   source:
-    uri: https://github.com/pivotal-enablement/attendee-service
+    uri: https://github.com/awadawad/pcf-attendee-service-code
     branch: smoke_tests
 - name: deploy-attendee-service
   type: cf
   source:
-    api: api.run.pez.pivotal.io
+    api: api.run.pivotal.io
     username: {{cf-user}}
     password: {{cf-password}}
-    organization: pivot-twhitney
-    space: pal
+    organization: awadawad
+    space: development
     skip_cert_check: true
 
 jobs:
@@ -46,4 +46,4 @@ jobs:
   - task: smoke_test
     file: attendee-service-source/ci/tasks/smoke_test.yml
     params:
-      ATTENDEE_SERVICE_URL: https://attendee-service-clotty-megalopolis.cfapps.pez.pivotal.io 
+      ATTENDEE_SERVICE_URL: http://attendee-service-awad-awad.cfapps.io
